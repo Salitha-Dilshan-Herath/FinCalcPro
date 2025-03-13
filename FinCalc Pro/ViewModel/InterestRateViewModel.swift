@@ -19,9 +19,7 @@ class InterestRateViewModel: ObservableObject {
     @Published var interestRate: Double? = nil
 
     // Function to calculate interest rate
-    func calculateInterestRate() {
-    
-        interestRate = nil
+    func calculate() {
 
         // Convert inputs to Double
         guard let n = Double(numberOfPeriods),
@@ -38,28 +36,13 @@ class InterestRateViewModel: ObservableObject {
             return
         }
         
-        // Perform the calculation using Newton-Raphson method
-        let tolerance = 1.0e-6 // Tolerance for convergence
-        let maxIterations = 100 // Maximum number of iterations
-        var r = 0.1 // Initial guess for interest rate
+        let model = InterestRateModel(numberOfPeriods: Int(n), presentValue: pv, periodicPayment: pmt, futureValue: fv)
         
-        for _ in 0..<maxIterations {
-            let fValue = pv * pow(1 + r, n) + pmt * (pow(1 + r, n) - 1) / r - fv
-            let fDerivative = pv * n * pow(1 + r, n - 1) + pmt * (n * pow(1 + r, n - 1) / r - (pow(1 + r, n) - 1) / (r * r))
-            
-            let rNew = r - fValue / fDerivative
-            
-            // Check for convergence
-            if abs(rNew - r) < tolerance {
-                interestRate = rNew * 100 // Convert to percentage
-                return
-            }
-            
-            r = rNew
+        if let rate = model.calculateInterestRate() {
+            calculationResult = .valid(rate * 100)
+        } else {
+            calculationResult = .invalidInput
         }
-        
-        // If the method did not converge
-        calculationResult = .invalidInput
     }
     
     // Helper function to format numbers with thousand separators

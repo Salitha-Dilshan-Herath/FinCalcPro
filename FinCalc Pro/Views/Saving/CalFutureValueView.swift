@@ -10,7 +10,7 @@ import SwiftUI
 struct CalFutureValueView: View {
     
     @ObservedObject var viewModel = FutureValueViewModel()
-    @State private var showAlert = false // State to control alert visibility
+    @State private var showAlert = false 
     
     var body: some View {
         Form {

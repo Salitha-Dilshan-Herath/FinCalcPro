@@ -50,9 +50,9 @@ struct SavingView: View {
         case 0:
             CalFutureValueView()
         case 1:
-            CalFutureValueView()
+            CalPMTView()
         case 2:
-            CalFutureValueView()
+            CalInterestRateView()
         default:
             Text("Unknown View") // Fallback in case of an unknown item
         }
