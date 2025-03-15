@@ -53,6 +53,10 @@ struct SavingView: View {
             CalPMTView()
         case 2:
             CalInterestRateView()
+        case 3:
+            CalCompoundingPeriodsView()
+        case 4:
+            CalPresentValueView()
         default:
             Text("Unknown View") // Fallback in case of an unknown item
         }
