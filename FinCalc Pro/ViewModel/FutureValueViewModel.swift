@@ -42,9 +42,3 @@ class FutureValueViewModel: ObservableObject {
         return formatter.string(from: NSNumber(value: value)) ?? "\(value)"
     }
 }
-
-enum CalculationResult {
-    case valid(Double) // Valid result with a calculated value
-    case invalidInput // Invalid input state
-    case empty // No calculation has been performed yet
-}

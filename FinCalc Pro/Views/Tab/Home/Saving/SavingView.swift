@@ -7,63 +7,45 @@
 
 import SwiftUI
 
-
 struct SavingView: View {
-    @State private var isVisible = false
-    private let items = ["Calculate Future Value", "Calculate Periodic Value", "Calculate Interest Rate", "Calculate Compounding Periods", "Calculate Present Value"]
-    
+    @StateObject private var viewModel = SavingViewModel()
+
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                ForEach(items.indices, id: \.self) { index in
-                    NavigationLink(destination: destinationView(for: index)) {
-                        
-                        HStack {
-                            Text(items[index]) // Text
-                                .font(.title3)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Image(systemName: "chevron.forward")
-                                .font(.title3)
-                        }
-                        .padding()
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
-                        .opacity(isVisible ? 1 : 0)
-                        .offset(y: isVisible ? 0 : 50)
-                        .animation(.easeInOut(duration: 0.5).delay(Double(index) * 0.1), value: isVisible)
-                        
-                    }
+                ForEach(viewModel.savingViews.indices, id: \.self) { index in
+                    savingNavigationLink(for: index)
+                        .opacity(viewModel.isVisible ? 1 : 0)
+                        .offset(y: viewModel.isVisible ? 0 : 50)
+                        .animation(.easeInOut(duration: 0.5).delay(Double(index) * 0.1), value: viewModel.isVisible)
                 }
             }
             .padding()
         }
-        .navigationTitle("Saving")
+        .navigationTitle(Constant.SAVING_SCREEN_NAME)
         .onAppear {
-            isVisible = true
+            viewModel.isVisible = true
         }
     }
-    
-    @ViewBuilder
-    private func destinationView(for item: Int) -> some View {
-        switch item {
-        case 0:
-            CalFutureValueView()
-        case 1:
-            CalPMTView()
-        case 2:
-            CalInterestRateView()
-        case 3:
-            CalCompoundingPeriodsView()
-        case 4:
-            CalPresentValueView()
-        default:
-            Text("Unknown View") // Fallback in case of an unknown item
+
+    private func savingNavigationLink(for index: Int) -> some View {
+        NavigationLink(destination: viewModel.destinationView(for: index)) {
+            HStack {
+                Text(viewModel.savingViews[index])
+                    .font(.title3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Image(systemName: "chevron.forward")
+                    .font(.title3)
+            }
+            .padding()
+            .background(Color.blue.opacity(0.1))
+            .cornerRadius(8)
         }
     }
 }
-
 
 #Preview {
     SavingView()
 }
+
