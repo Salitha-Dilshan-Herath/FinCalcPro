@@ -9,7 +9,7 @@ import Foundation
 
 class LoanViewModel: ObservableObject {
     
-    // MARK: - Published Properties
+    // MARK: - User inputs
     @Published var loanAmount: String = ""
     @Published var loanTerm: String = "" // Number of months
     @Published var monthlyPayment: String = ""

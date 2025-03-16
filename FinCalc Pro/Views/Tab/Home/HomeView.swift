@@ -1,17 +1,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    private let items = ["Saving", "Loan", "Mortgage"]
-    
+        
     var body: some View {
         NavigationView{
             ScrollView {
                 VStack(spacing: 15) {
-                    ForEach(items.indices, id: \.self) { index in
-                        NavigationLink(destination: destinationView(for: items[index])) { // Navigate to specific view
+                    ForEach(Constant.MAIN_VIEWS.indices, id: \.self) { index in
+                        NavigationLink(destination: destinationView(for: Constant.MAIN_VIEWS[index])) {
                             HStack {
-                                Text(items[index])
+                                Text(Constant.MAIN_VIEWS[index])
                                     .font(.title3)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -26,19 +24,19 @@ struct HomeView: View {
                     }
                 }
                 .padding()
-            }.navigationTitle("Home")
+            }.navigationTitle(Constant.HOME_SCREEN_TITLE)
         }
     }
     
     @ViewBuilder
     private func destinationView(for item: String) -> some View {
         switch item {
-        case "Saving":
+        case Constant.SAVING_SCREEN_NAME:
             SavingView()
-        case "Loan":
+        case Constant.LOAN_SCREEN_NAME:
             LoanView()
-        case "Mortgage":
-            SavingView()
+        case Constant.MORTAGAGE_SCREEN_NAME:
+            MortgageView()
         default:
             Text("Unknown View") // Fallback in case of an unknown item
         }

@@ -11,7 +11,8 @@ struct CalFutureValueView: View {
     
     @ObservedObject var viewModel = FutureValueViewModel()
     @State private var showAlert = false 
-    
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -127,13 +128,17 @@ struct CalFutureValueView: View {
                 message: Text("Please enter valid numbers for all fields."),
                 dismissButton: .default(Text("OK")))
         }.toolbar {
-            // Add a Help button in the navigation bar
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: SavingView()) {
+                Button(action: {
+                    isHelpSheetPresented = true
+                }) {
                     Image(systemName: "questionmark.circle")
                         .foregroundColor(.blue)
                 }
             }
+        }
+        .sheet(isPresented: $isHelpSheetPresented) {
+            HelpFutureView()
         }
 
     }

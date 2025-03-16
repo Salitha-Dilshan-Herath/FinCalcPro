@@ -12,11 +12,11 @@ struct MainTabView: View {
         TabView{
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label(Constant.HOME_SCREEN_TITLE, systemImage: "house.fill")
                 }
             HelpView()
                 .tabItem {
-                    Label("Help", systemImage: "questionmark.circle.fill")
+                    Label(Constant.ABOUT_SCRREN_TITLE, systemImage: "questionmark.circle.fill")
                 }
         }.backgroundStyle(Color.white)
     }
