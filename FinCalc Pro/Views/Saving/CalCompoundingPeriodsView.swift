@@ -42,7 +42,7 @@ struct CalCompoundingPeriodsView: View {
                     Text("Present Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -59,31 +59,11 @@ struct CalCompoundingPeriodsView: View {
                 }
                 
                 HStack {
-                    Text("Periodic Payment")
-                    Spacer()
-                    HStack(alignment: .firstTextBaseline){
-                        Text("$")
-                            .foregroundColor(.gray)
-                        
-                        ZStack(alignment: .trailing) {
-                            if viewModel.periodicPayment.isEmpty {
-                                Text("0")
-                                    .foregroundColor(.gray)
-                            }
-                            TextField("", text: $viewModel.periodicPayment)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                        }
-                    }
-                    
-                }
-                
-                HStack {
                     Text("Future Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
                         // $ symbol at the front
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         // TextField for user input
@@ -99,6 +79,26 @@ struct CalCompoundingPeriodsView: View {
                             }
                         }
                     }
+                }
+                
+                HStack {
+                    Text("Periodic Payment")
+                    Spacer()
+                    HStack(alignment: .firstTextBaseline){
+                        Text("Rs")
+                            .foregroundColor(.gray)
+                        
+                        ZStack(alignment: .trailing) {
+                            if viewModel.periodicPayment.isEmpty {
+                                Text("0")
+                                    .foregroundColor(.gray)
+                            }
+                            TextField("", text: $viewModel.periodicPayment)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
+                    }
+                    
                 }
             }
             

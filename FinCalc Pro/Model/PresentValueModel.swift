@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PresentValue {
+struct PresentValueModel {
     
     var numberOfPeriods: Double
     var interestPerYear: Double

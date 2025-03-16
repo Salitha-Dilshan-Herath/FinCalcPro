@@ -28,7 +28,7 @@ class PresentValueViewModel: ObservableObject{
             return
         }
 
-        let model = PresentValue(numberOfPeriods: n, interestPerYear: iy, futureValue: fv, periodicPayment: pmt)
+        let model = PresentValueModel(numberOfPeriods: n, interestPerYear: iy, futureValue: fv, periodicPayment: pmt)
         
         calculationResult = .valid(model.calculatePresentValue())
     }

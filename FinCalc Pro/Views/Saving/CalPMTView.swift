@@ -56,7 +56,7 @@ struct CalPMTView: View {
                     Text("Present Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -77,7 +77,7 @@ struct CalPMTView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
                         // $ symbol at the front
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         // TextField for user input
@@ -109,7 +109,7 @@ struct CalPMTView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("PMT = $\(viewModel.formatNumber(result))")
+                        Text("PMT = Rs\(viewModel.formatNumber(result))")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))

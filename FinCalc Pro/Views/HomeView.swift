@@ -2,7 +2,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var isVisible = false
     private let items = ["Saving", "Loan", "Mortgage"]
     
     var body: some View {
@@ -23,15 +22,11 @@ struct HomeView: View {
                             .frame(height:80)
                             .background(Color.blue.opacity(0.1))
                             .cornerRadius(8)
-                            .opacity(isVisible ? 1 : 0) // Fade in
-                            .offset(y: isVisible ? 0 : 50) // Slide from bottom to top
-                            .animation(.easeInOut(duration: 0.5).delay(Double(index) * 0.1), value: isVisible)
                         }
                     }
                 }
                 .padding()
             }.navigationTitle("Home")
-            .onAppear {isVisible = true}
         }
     }
     
@@ -41,7 +36,7 @@ struct HomeView: View {
         case "Saving":
             SavingView()
         case "Loan":
-            SavingView()
+            LoanView()
         case "Mortgage":
             SavingView()
         default:

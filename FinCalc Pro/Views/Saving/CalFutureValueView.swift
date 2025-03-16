@@ -56,7 +56,7 @@ struct CalFutureValueView: View {
                     Text("Present Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -77,7 +77,7 @@ struct CalFutureValueView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
                         // $ symbol at the front
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         // TextField for user input
@@ -109,7 +109,7 @@ struct CalFutureValueView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("Future Value = $\(viewModel.formatNumber(result))")
+                        Text("Future Value = Rs\(viewModel.formatNumber(result))")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))
@@ -126,7 +126,16 @@ struct CalFutureValueView: View {
                 title: Text("Invalid Input"),
                 message: Text("Please enter valid numbers for all fields."),
                 dismissButton: .default(Text("OK")))
+        }.toolbar {
+            // Add a Help button in the navigation bar
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SavingView()) {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundColor(.blue)
+                }
+            }
         }
+
     }
 }
 

@@ -1,69 +1,53 @@
 //
-//  CalInterestRateView.swift
+//  LoanView.swift
 //  FinCalc Pro
 //
-//  Created by Spemai on 2025-03-13.
+//  Created by Spemai on 2025-03-15.
 //
 
 import SwiftUI
 
-struct CalInterestRateView: View {
-    @ObservedObject var viewModel = InterestRateViewModel()
+struct LoanView: View {
+    @ObservedObject var viewModel = LoanViewModel()
     @State private var showAlert = false
     
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
-                HStack {
-                    Text("Number of periods")
-                    Spacer()
-                    ZStack(alignment: .trailing) {
-                        if viewModel.numberOfPeriods.isEmpty {
-                            Text("0")
-                                .foregroundColor(.gray)
-                        }
-                        TextField("", text: $viewModel.numberOfPeriods)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
-                    }
-                }
                 
                 HStack {
-                    Text("Present Value")
+                    Text("Loan Amount")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
                         Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
-                            if viewModel.presentValue.isEmpty {
+                            if viewModel.loanAmount.isEmpty {
                                 Text("0")
                                     .foregroundColor(.gray)
                             }
-                            TextField("", text: $viewModel.presentValue)
+                            TextField("", text: $viewModel.loanAmount)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                         }
                     }
-                    
                 }
                 
                 HStack {
-                    Text("Future Value")
+                    Text("Loan Term")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
-                        // $ symbol at the front
-                        Text("Rs")
+
+                        Text("month")
                             .foregroundColor(.gray)
                         
-                        // TextField for user input
                         ZStack(alignment: .trailing) {
-                            TextField("", text: $viewModel.futureValue)
+                            TextField("", text: $viewModel.loanTerm)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                             
-                            // Placeholder text
-                            if viewModel.futureValue.isEmpty {
+                            if viewModel.loanTerm.isEmpty {
                                 Text("0")
                                     .foregroundColor(.gray)
                             }
@@ -72,21 +56,39 @@ struct CalInterestRateView: View {
                 }
                 
                 HStack {
-                    Text("Periodic Payment")
+                    Text("Monthly Payment")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
-                        // $ symbol at the front
+
                         Text("Rs")
                             .foregroundColor(.gray)
                         
-                        // TextField for user input
                         ZStack(alignment: .trailing) {
-                            TextField("", text: $viewModel.periodicPayment)
+                            TextField("", text: $viewModel.monthlyPayment)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                             
-                            // Placeholder text
-                            if viewModel.periodicPayment.isEmpty {
+                            if viewModel.monthlyPayment.isEmpty {
+                                Text("0")
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                }
+                
+                HStack {
+                    Text("Interest Rate")
+                    Spacer()
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("%")
+                            .foregroundColor(.gray)
+                        
+                        ZStack(alignment: .trailing) {
+                            TextField("", text: $viewModel.interestRate)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            
+                            if viewModel.interestRate.isEmpty {
                                 Text("0")
                                     .foregroundColor(.gray)
                             }
@@ -97,38 +99,44 @@ struct CalInterestRateView: View {
             
             Button(action: {
                 viewModel.calculate()
-                if case .invalidInput = viewModel.calculationResult {
+                if !viewModel.errorMessage.isEmpty {
                     showAlert = true
                 }
             }) {
                 Text("Calculate")
                     .frame(maxWidth: .infinity, alignment: .center)
             }
-            
-            if case .valid(let result) = viewModel.calculationResult {
-                Section {
-                    HStack {
-                        Text("Interest Rate = \(result)%")
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding()
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(8)
-                        
-                    }
-                }
-            }
         }
-        .navigationTitle("Interest Rate Calculator")
+        .navigationTitle("Loan Calculator")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Invalid Input"),
-                message: Text("Please enter valid numbers for all fields."),
+                message: Text(viewModel.errorMessage),
                 dismissButton: .default(Text("OK")))
+        }.toolbar {
+            // Reset Button
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    viewModel.resetForm()
+                }) {
+                    Image(systemName: "arrow.clockwise.circle")
+                }
+            }
+            
+            // Help Button
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    viewModel.resetForm()
+                }) {
+                    Image(systemName: "questionmark.circle")
+        
+                }
+            }
         }
     }
 }
 
 #Preview {
-    CalInterestRateView()
+    LoanView()
 }

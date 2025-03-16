@@ -14,11 +14,18 @@ struct FutureValueModel {
     var periodicPayment: Double
     
     func calculateFutureValue() -> Double {
-       
-        let rate = interestPerYear / 100.0 // Convert interest rate to decimal
-        let futureValueFactor = pow(1 + rate, numberOfPeriods)
-        let annuityFactor = (futureValueFactor - 1) / rate
         
-        return -(presentValue * futureValueFactor + periodicPayment * annuityFactor)
+        let rate = interestPerYear / 100.0 // Convert interest rate to decimal
+
+        if periodicPayment > 0{
+            let futureValueFactor = pow(1 + rate, numberOfPeriods)
+            let annuityFactor = (futureValueFactor - 1) / rate
+            
+            return -(presentValue * futureValueFactor + periodicPayment * annuityFactor)
+        }else{
+            let futureValue = presentValue * pow(1 + rate, Double(numberOfPeriods))
+            return futureValue
+        }
+        
     }
 }

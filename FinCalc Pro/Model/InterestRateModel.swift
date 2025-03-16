@@ -14,7 +14,6 @@ struct InterestRateModel {
 
     func calculateInterestRate() -> Double? {
         
-        
         if periodicPayment > 0 {
             let guess: Double = 0.1
             var r = guess // Initial guess for the interest rate

@@ -55,7 +55,7 @@ struct CalPresentValueView: View {
                     Text("Future Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -76,7 +76,7 @@ struct CalPresentValueView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
                         // $ symbol at the front
-                        Text("$")
+                        Text("Rs")
                             .foregroundColor(.gray)
                         
                         // TextField for user input
