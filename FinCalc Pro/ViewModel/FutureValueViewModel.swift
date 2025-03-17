@@ -32,13 +32,4 @@ class FutureValueViewModel: ObservableObject {
         
         calculationResult = .valid(model.calculateFutureValue())
     }
-    
-    //MARK: Helper function to format numbers with thousand separators
-    func formatNumber(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "," // Use comma as the thousand separator
-        formatter.maximumFractionDigits = 2 // Limit to 2 decimal places
-        return formatter.string(from: NSNumber(value: value)) ?? "\(value)"
-    }
 }

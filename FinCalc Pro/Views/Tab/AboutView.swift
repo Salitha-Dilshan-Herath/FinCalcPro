@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HelpView: View {
+struct AboutView: View {
     var body: some View {
         
         NavigationView{
@@ -19,5 +19,5 @@ struct HelpView: View {
 }
 
 #Preview {
-    HelpView()
+    AboutView()
 }

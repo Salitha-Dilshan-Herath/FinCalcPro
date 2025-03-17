@@ -19,20 +19,17 @@ class CompoundingPeriodsViewModel: ObservableObject{
     // Function to perform the calculation
     func calculate() {
         
-        print(interestPerYear)
-        print(presentValue)
-        print(periodicPayment)
-        print(futureValue)
         // Convert inputs to Double
         guard let iy = Double(interestPerYear),
               let pv = Double(presentValue),
               let pmt = Double(periodicPayment),
-              let fv = Double(futureValue) else {
+              let fv = Double(futureValue),
+              iy > 0 else {
             calculationResult = .invalidInput
             return
         }
 
-        let model = CompoundingPeriods(interestPerYear: iy, presentValue: pv, periodicPayment: pmt, futureValue: fv)
+        let model = CompoundingPeriodsModal(interestPerYear: iy, presentValue: pv, periodicPayment: pmt, futureValue: fv)
         
         if let value = model.calculateNumberOfPeriods() {
             calculationResult = .valid(value)

@@ -10,7 +10,8 @@ import SwiftUI
 struct CalCompoundingPeriodsView: View {
     @ObservedObject var viewModel = CompoundingPeriodsViewModel()
     @State private var showAlert = false
-    
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -132,8 +133,37 @@ struct CalCompoundingPeriodsView: View {
                 title: Text("Invalid Input"),
                 message: Text("Please enter valid numbers for all fields."),
                 dismissButton: .default(Text("OK")))
+        }.toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isHelpSheetPresented = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+        .sheet(isPresented: $isHelpSheetPresented) {
+            HelpView(helpData: compoundingPeriodsHelpData)
         }
     }
+    
+    let compoundingPeriodsHelpData = HelpData(
+        title: "Help",
+        description: "The Compounding Periods Calculator helps you determine the number of compounding periods required to reach a future value, based on the following inputs:",
+        inputFields: [
+            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be applied to the investment."),
+            InputField(icon: "dollarsign.circle", title: "Present Value", description: "Enter the initial amount of money (present value) you are investing."),
+            InputField(icon: "dollarsign.circle.fill", title: "Future Value", description: "Enter the future amount of money you want to achieve."),
+            InputField(icon: "arrow.clockwise.circle", title: "Periodic Payment (Optional)", description: "Enter the amount of money you will add periodically (e.g., monthly or yearly) to the investment. If there are no periodic payments, you can leave this field blank or enter 0.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "The calculator assumes that payments are made at the end of each period."
+        ]
+    )
+
 }
 
 #Preview {

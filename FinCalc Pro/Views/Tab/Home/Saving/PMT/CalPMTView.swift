@@ -1,5 +1,5 @@
 //
-//  CalInterestRateView.swift
+//  CalPMTView.swift
 //  FinCalc Pro
 //
 //  Created by Spemai on 2025-03-13.
@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct CalInterestRateView: View {
-    @ObservedObject var viewModel = InterestRateViewModel()
-    @State private var showAlert = false
+struct CalPMTView: View {
     
+    @ObservedObject var viewModel = PMTViewModel()
+    @State private var showAlert = false
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -25,6 +27,29 @@ struct CalInterestRateView: View {
                         TextField("", text: $viewModel.numberOfPeriods)
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
+                    }
+                }
+                
+                HStack {
+                    Text("Interest per year")
+                    Spacer()
+                    ZStack(alignment: .trailing) {
+                        // TextField for user input
+                        TextField("", text: $viewModel.interestPerYear)
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .padding(.trailing, 20) // Add padding to avoid overlap with the % symbol
+                        
+                        // Placeholder text
+                        if viewModel.interestPerYear.isEmpty {
+                            Text("0")
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 20) // Align placeholder with the TextField
+                        }
+                        
+                        Text("%")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 0) // Adjust padding to align with the TextField
                     }
                 }
                 
@@ -70,29 +95,6 @@ struct CalInterestRateView: View {
                         }
                     }
                 }
-                
-                HStack {
-                    Text("Periodic Payment")
-                    Spacer()
-                    HStack(alignment: .firstTextBaseline) {
-                        // $ symbol at the front
-                        Text("Rs")
-                            .foregroundColor(.gray)
-                        
-                        // TextField for user input
-                        ZStack(alignment: .trailing) {
-                            TextField("", text: $viewModel.periodicPayment)
-                                .keyboardType(.decimalPad)
-                                .multilineTextAlignment(.trailing)
-                            
-                            // Placeholder text
-                            if viewModel.periodicPayment.isEmpty {
-                                Text("0")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                    }
-                }
             }
             
             Button(action: {
@@ -108,7 +110,7 @@ struct CalInterestRateView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("Interest Rate = \(result)%")
+                        Text("PMT = Rs\(result.formattedWithSeparator())")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))
@@ -118,17 +120,45 @@ struct CalInterestRateView: View {
                 }
             }
         }
-        .navigationTitle("Interest Rate Calculator")
+        .navigationTitle("PMT Calculator")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Invalid Input"),
                 message: Text("Please enter valid numbers for all fields."),
                 dismissButton: .default(Text("OK")))
+        }.toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isHelpSheetPresented = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+        .sheet(isPresented: $isHelpSheetPresented) {
+            HelpView(helpData: helpData)
         }
     }
+    
+    let helpData = HelpData(
+        title: "Help",
+        description: "The PMT (Periodic Payment) Calculator helps you determine the periodic payment required to achieve a future value or pay off a loan.",
+        inputFields: [
+            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the payments will be made."),
+            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be applied to the loan or investment."),
+            InputField(icon: "dollarsign.circle", title: "Present Value", description: "Enter the initial amount of money (present value) of the loan or investment."),
+            InputField(icon: "dollarsign.circle.fill", title: "Future Value", description: "Enter the future amount of money you want to achieve. For loans, this is typically 0.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "The calculator assumes that payments are made at the end of each period."
+        ]
+    )
 }
 
 #Preview {
-    CalInterestRateView()
+    CalPMTView()
 }

@@ -39,18 +39,9 @@ class InterestRateViewModel: ObservableObject {
         let model = InterestRateModel(numberOfPeriods: Int(n), presentValue: pv, periodicPayment: pmt, futureValue: fv)
         
         if let rate = model.calculateInterestRate() {
-            calculationResult = .valid(rate * 100)
+            calculationResult = .valid(rate)
         } else {
             calculationResult = .invalidInput
         }
-    }
-    
-    // Helper function to format numbers with thousand separators
-    func formatNumber(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "," // Use comma as the thousand separator
-        formatter.maximumFractionDigits = 2 // Limit to 2 decimal places
-        return formatter.string(from: NSNumber(value: value)) ?? "\(value)"
     }
 }

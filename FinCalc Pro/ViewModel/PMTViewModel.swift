@@ -39,15 +39,11 @@ class PMTViewModel: ObservableObject {
         let model = PMTModel(numberOfPeriods: n, interestPerYear: iy, presentValue: pv, futureValue: fv)
 
         // Set the result
-        calculationResult = .valid(model.calPmt())
-    }
-    
-    // Helper function to format numbers with thousand separators
-    func formatNumber(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = "," // Use comma as the thousand separator
-        formatter.maximumFractionDigits = 2 // Limit to 2 decimal places
-        return formatter.string(from: NSNumber(value: value)) ?? "\(value)"
+        if let result = model.calPmt(){
+            calculationResult = .valid(result)
+        } else {
+            calculationResult = .invalidInput
+        }
+        
     }
 }

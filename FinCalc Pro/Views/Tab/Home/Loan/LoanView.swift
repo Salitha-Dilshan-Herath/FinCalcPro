@@ -10,7 +10,8 @@ import SwiftUI
 struct LoanView: View {
     @ObservedObject var viewModel = LoanViewModel()
     @State private var showAlert = false
-    
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -127,14 +128,32 @@ struct LoanView: View {
             // Help Button
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    viewModel.resetForm()
+                    isHelpSheetPresented = true
                 }) {
                     Image(systemName: "questionmark.circle")
         
                 }
             }
+        }.sheet(isPresented: $isHelpSheetPresented) {
+            HelpView(helpData: loanHelpData)
         }
     }
+    
+    let loanHelpData = HelpData(
+        title: "Loan Calculator Help",
+        description: "The Loan Calculator helps you determine the missing value in a loan calculation (Loan Amount, Loan Term, Monthly Payment, or Interest Rate) based on the following inputs:",
+        inputFields: [
+            InputField(icon: "dollarsign.circle", title: "Loan Amount", description: "Enter the total amount of the loan (in Rs)."),
+            InputField(icon: "calendar", title: "Loan Term", description: "Enter the total duration of the loan (in months)."),
+            InputField(icon: "arrow.clockwise.circle", title: "Monthly Payment", description: "Enter the amount you will pay each month (in Rs)."),
+            InputField(icon: "percent", title: "Interest Rate", description: "Enter the annual interest rate (in percentage) for the loan.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "To calculate the missing value, enter three fields and leave one blank."
+        ]
+    )
 }
 
 #Preview {

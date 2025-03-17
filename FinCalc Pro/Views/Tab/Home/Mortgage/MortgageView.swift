@@ -10,7 +10,8 @@ import SwiftUI
 struct MortgageView: View {
     @ObservedObject var viewModel = MortgageViewModel()
     @State private var showAlert = false
-    
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -128,7 +129,7 @@ struct MortgageView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .navigationTitle("Loan Calculator")
+        .navigationTitle("Mortgage Calculator")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
@@ -148,14 +149,34 @@ struct MortgageView: View {
             // Help Button
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
-                    viewModel.resetForm()
+                    isHelpSheetPresented = true
                 }) {
                     Image(systemName: "questionmark.circle")
         
                 }
             }
+        }.sheet(isPresented: $isHelpSheetPresented) {
+            HelpView(helpData: mortgageHelpData)
         }
     }
+    
+    let mortgageHelpData = HelpData(
+        title: "Mortgage Calculator Help",
+        description: "The Mortgage Calculator helps you determine the missing value in a mortgage calculation (House Price, Down Payment, Monthly Payment, Loan Term, or Interest Rate) based on the following inputs:",
+        inputFields: [
+            InputField(icon: "house.fill", title: "House Price", description: "Enter the total price of the house (in Rs)."),
+            InputField(icon: "dollarsign.circle", title: "Down Payment", description: "Enter the amount you will pay upfront (in Rs)."),
+            InputField(icon: "arrow.clockwise.circle", title: "Monthly Payment", description: "Enter the amount you will pay each month (in Rs)."),
+            InputField(icon: "calendar", title: "Loan Term", description: "Enter the total duration of the loan (in years)."),
+            InputField(icon: "percent", title: "Interest Rate", description: "Enter the annual interest rate (in percentage) for the mortgage.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "To calculate the missing value, enter four fields and leave one blank."
+        ]
+    )
+
 }
 
 #Preview {

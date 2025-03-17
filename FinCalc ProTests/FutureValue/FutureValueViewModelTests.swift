@@ -47,9 +47,4 @@ class FutureValueViewModelTests: XCTestCase {
         
         XCTAssertEqual(viewModel.calculationResult, .invalidInput)
     }
-
-    func testFormatNumber() {
-        let formatted = viewModel.formatNumber(1234567.89)
-        XCTAssertEqual(formatted, "1,234,567.89")
-    }
 }

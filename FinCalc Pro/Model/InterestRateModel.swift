@@ -14,6 +14,10 @@ struct InterestRateModel {
 
     func calculateInterestRate() -> Double? {
         
+        if presentValue <= 0 || futureValue <= 0 || periodicPayment < 0{
+            return nil
+        }
+        
         if periodicPayment > 0 {
             let guess: Double = 0.1
             var r = guess // Initial guess for the interest rate
@@ -33,7 +37,7 @@ struct InterestRateModel {
                 
                 // Check for convergence
                 if abs(newR - r) < tolerance {
-                    return newR
+                    return newR * 100
                 }
                 
                 r = newR
@@ -45,7 +49,7 @@ struct InterestRateModel {
             // Calculate the interest rate using the formula
             let r = pow(futureValue / presentValue, 1.0 / Double(numberOfPeriods)) - 1.0
             
-            return r
+            return r * 100
         }
     }
 }

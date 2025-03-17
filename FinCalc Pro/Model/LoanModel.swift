@@ -23,6 +23,12 @@ struct LoanModel {
               let interestRate = interestRate else {
             return nil
         }
+        
+        if interestRate == 0 {
+            // If interest rate is 0%, calculate loan amount using simple formula
+            return monthlyPayment * Double(loanTerm)
+        }
+        
         let r = interestRate / 1200 // Monthly interest rate
         let n = loanTerm // Total number of payments (in months)
         let numerator = monthlyPayment * (1 - pow(1 + r, -n))
@@ -50,6 +56,11 @@ struct LoanModel {
               let interestRate = interestRate else {
             return nil
         }
+        
+        if interestRate == 0 {
+            return loanAmount / Double(loanTerm)
+        }
+        
         let r = interestRate / 1200 // Monthly interest rate
         let n = loanTerm // Total number of payments (in months)
         return (loanAmount * r) / (1 - pow(1 + r, -n))
@@ -62,8 +73,29 @@ struct LoanModel {
               let monthlyPayment = monthlyPayment else {
             return nil
         }
-        // Simplified approximation for interest rate
-        let n = loanTerm // Total number of payments (in months)
-        return (monthlyPayment * n - loanAmount) / (loanAmount * n) * 1200
+        
+        guard loanAmount > 0, loanTerm > 0, monthlyPayment > 0 else {
+            return nil
+        }
+        
+        let n = Double(loanTerm) // Loan term in months
+        var r = 0.005 // Initial guess for monthly interest rate (0.5%)
+        
+        // Function to compute the difference between actual and expected monthly payment
+        func loanEquation(r: Double) -> Double {
+            return (loanAmount * r) / (1 - pow(1 + r, -n)) - monthlyPayment
+        }
+        
+        // Newton-Raphson method to solve for r
+        for _ in 0..<100 { // Limit iterations to avoid infinite loop
+            let f = loanEquation(r: r)
+            let f_prime = (loanAmount * (pow(1 + r, -n) * (n * r - 1) + 1)) / pow(1 - pow(1 + r, -n), 2)
+            
+            let newR = r - f / f_prime
+            if abs(newR - r) < 1e-6 { break } // Convergence check
+            r = newR
+        }
+        
+        return r * 12 * 100 // Convert to annual percentage rate (APR)
     }
 }

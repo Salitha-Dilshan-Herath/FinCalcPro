@@ -14,7 +14,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label(Constant.HOME_SCREEN_TITLE, systemImage: "house.fill")
                 }
-            HelpView()
+            AboutView()
                 .tabItem {
                     Label(Constant.ABOUT_SCRREN_TITLE, systemImage: "questionmark.circle.fill")
                 }

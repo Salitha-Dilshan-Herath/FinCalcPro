@@ -1,17 +1,17 @@
 //
-//  CalPMTView.swift
+//  CalPresentValue.swift
 //  FinCalc Pro
 //
-//  Created by Spemai on 2025-03-13.
+//  Created by Spemai on 2025-03-15.
 //
 
 import SwiftUI
 
-struct CalPMTView: View {
-    
-    @ObservedObject var viewModel = PMTViewModel()
+struct CalPresentValueView: View {
+    @ObservedObject var viewModel = PresentValueViewModel()
     @State private var showAlert = false
-    
+    @State private var isHelpSheetPresented = false
+
     var body: some View {
         Form {
             Section(header: Text("Financial Inputs")) {
@@ -53,18 +53,18 @@ struct CalPMTView: View {
                 }
                 
                 HStack {
-                    Text("Present Value")
+                    Text("Future Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
                         Text("Rs")
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
-                            if viewModel.presentValue.isEmpty {
+                            if viewModel.futureValue.isEmpty {
                                 Text("0")
                                     .foregroundColor(.gray)
                             }
-                            TextField("", text: $viewModel.presentValue)
+                            TextField("", text: $viewModel.futureValue)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                         }
@@ -73,7 +73,7 @@ struct CalPMTView: View {
                 }
                 
                 HStack {
-                    Text("Future Value")
+                    Text("Periodic Payment")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
                         // $ symbol at the front
@@ -82,12 +82,12 @@ struct CalPMTView: View {
                         
                         // TextField for user input
                         ZStack(alignment: .trailing) {
-                            TextField("", text: $viewModel.futureValue)
+                            TextField("", text: $viewModel.periodicPayment)
                                 .keyboardType(.decimalPad)
                                 .multilineTextAlignment(.trailing)
                             
                             // Placeholder text
-                            if viewModel.futureValue.isEmpty {
+                            if viewModel.periodicPayment.isEmpty {
                                 Text("0")
                                     .foregroundColor(.gray)
                             }
@@ -109,7 +109,7 @@ struct CalPMTView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("PMT = Rs\(viewModel.formatNumber(result))")
+                        Text("Present Value = $\(result.formattedWithSeparator())")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))
@@ -119,17 +119,46 @@ struct CalPMTView: View {
                 }
             }
         }
-        .navigationTitle("PMT Calculator")
+        .navigationTitle("Present Value Calculator")
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Invalid Input"),
                 message: Text("Please enter valid numbers for all fields."),
                 dismissButton: .default(Text("OK")))
+        }.toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isHelpSheetPresented = true
+                }) {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
+        .sheet(isPresented: $isHelpSheetPresented) {
+            HelpView(helpData: presentValueHelpData)
         }
     }
+    
+    let presentValueHelpData = HelpData(
+        title: "Present Value Calculator Help",
+        description: "The Present Value Calculator helps you determine the current value of a future amount of money or cash flow, based on the following inputs:",
+        inputFields: [
+            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the future value will be discounted."),
+            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be used to discount the future value."),
+            InputField(icon: "dollarsign.circle", title: "Future Value", description: "Enter the future amount of money or cash flow you want to discount to its present value."),
+            InputField(icon: "arrow.clockwise.circle", title: "Periodic Payment (Optional)", description: "Enter the amount of money you will receive or pay periodically (e.g., monthly or yearly). If there are no periodic payments, you can leave this field blank or enter 0.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "The calculator assumes that payments are made at the end of each period."
+        ]
+    )
+
 }
 
 #Preview {
-    CalPMTView()
+    CalPresentValueView()
 }

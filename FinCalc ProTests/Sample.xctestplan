@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "5E7958C7-36D0-4917-97CC-D2444CDECD5C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:FinCalc Pro.xcodeproj",
+        "identifier" : "058A50252D74191C007958C8",
+        "name" : "FinCalc ProTests"
+      }
+    }
+  ],
+  "version" : 1
+}

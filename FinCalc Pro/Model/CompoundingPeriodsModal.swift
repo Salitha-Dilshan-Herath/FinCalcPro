@@ -1,6 +1,6 @@
 import Foundation
 
-struct CompoundingPeriods {
+struct CompoundingPeriodsModal {
     var interestPerYear: Double
     var presentValue: Double
     var periodicPayment: Double?
@@ -54,17 +54,6 @@ struct CompoundingPeriods {
             // Calculate N using the absolute value of the ratio
             return log(abs(futureValue / presentValue)) / log(1 + r)
         }
-    }
-    
-    func calculateSumOfPeriodicPayments(numberOfPeriods: Double) -> Double {
-        guard let pmt = periodicPayment else {
-            return 0.0
-        }
-        return pmt * numberOfPeriods
-    }
-    
-    func calculateTotalInterest(numberOfPeriods: Double) -> Double {
-        return futureValue - presentValue - calculateSumOfPeriodicPayments(numberOfPeriods: numberOfPeriods)
     }
 }
 

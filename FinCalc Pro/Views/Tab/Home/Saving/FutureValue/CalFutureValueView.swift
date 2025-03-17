@@ -110,7 +110,7 @@ struct CalFutureValueView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("Future Value = Rs\(viewModel.formatNumber(result))")
+                        Text("Future Value = Rs\(result.formattedWithSeparator())")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))
@@ -138,10 +138,26 @@ struct CalFutureValueView: View {
             }
         }
         .sheet(isPresented: $isHelpSheetPresented) {
-            HelpFutureView()
+            HelpView(helpData: futureValueHelpData)
         }
-
     }
+    
+    let futureValueHelpData = HelpData(
+        title: "Help",
+        description: "The Future Value Calculator helps you determine the future value of an investment based on the following inputs:",
+        inputFields: [
+            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the investment will grow."),
+            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be applied to the investment."),
+            InputField(icon: "dollarsign.circle", title: "Present Value", description: "Enter the initial amount of money (present value) you are investing."),
+            InputField(icon: "arrow.clockwise.circle", title: "Periodic Payment (Optional)", description: "Enter the amount of money you will add periodically (e.g., monthly or yearly) to the investment. If there are no periodic payments, you can enter 0.")
+        ],
+        notes: [
+            "Ensure all inputs are positive numbers.",
+            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
+            "The calculator assumes that payments are made at the end of each period."
+        ]
+    )
+    
 }
 
 #Preview {

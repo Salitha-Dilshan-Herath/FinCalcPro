@@ -12,11 +12,18 @@ struct PMTModel {
     var presentValue: Double
     var futureValue: Double
     
-    func calPmt() -> Double {
-        // Convert interest rate to decimal
+    func calPmt() -> Double? {
         let r = interestPerYear / 100.0
-
-        // Calculate PMT using the annuity formula
+        
+        if r == 0 {
+            return -(futureValue + presentValue) / numberOfPeriods
+        }
+        
+        if r <= -1 {
+            return nil
+        }
+        
+        
         return -(presentValue * r + (futureValue * r) / pow(1 + r, numberOfPeriods)) / (1 - pow(1 + r, -numberOfPeriods))
     }
 }
