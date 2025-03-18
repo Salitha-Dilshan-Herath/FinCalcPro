@@ -109,7 +109,7 @@ struct CalInterestRateView: View {
             if case .valid(let result) = viewModel.calculationResult {
                 Section {
                     HStack {
-                        Text("Interest Rate = \(result)%")
+                        Text("Interest Rate = \(String(format: "%.2f", result))%")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
                             .background(Color.gray.opacity(0.1))

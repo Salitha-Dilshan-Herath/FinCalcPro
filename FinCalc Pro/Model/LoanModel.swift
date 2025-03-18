@@ -16,7 +16,6 @@ struct LoanModel {
     
     // MARK: - Calculations
     
-    /// Calculate the loan amount based on other variables
     func calculateLoanAmount() -> Double? {
         guard let loanTerm = loanTerm,
               let monthlyPayment = monthlyPayment,
@@ -86,7 +85,6 @@ struct LoanModel {
             return (loanAmount * r) / (1 - pow(1 + r, -n)) - monthlyPayment
         }
         
-        // Newton-Raphson method to solve for r
         for _ in 0..<100 { // Limit iterations to avoid infinite loop
             let f = loanEquation(r: r)
             let f_prime = (loanAmount * (pow(1 + r, -n) * (n * r - 1) + 1)) / pow(1 - pow(1 + r, -n), 2)

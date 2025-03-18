@@ -1,50 +1,49 @@
 import SwiftUI
 
 struct HomeView: View {
-        
+    @StateObject private var viewModel = HomeViewModel()
+
     var body: some View {
-        NavigationView{
+        NavigationView {
             ScrollView {
-                VStack(spacing: 15) {
-                    ForEach(Constant.MAIN_VIEWS.indices, id: \.self) { index in
-                        NavigationLink(destination: destinationView(for: Constant.MAIN_VIEWS[index])) {
-                            HStack {
-                                Text(Constant.MAIN_VIEWS[index])
-                                    .font(.title3)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                
-                                Image(systemName: "chevron.forward") // Right-side arrow
-                                    .font(.title3)
-                            }
-                            .padding()
-                            .frame(height:80)
-                            .background(Color.blue.opacity(0.1))
-                            .cornerRadius(8)
-                        }
+                VStack(spacing: 10) {
+                    ForEach(viewModel.mainViews.indices, id: \.self) { index in
+                        homeNavigationLink(for: index)
                     }
                 }
                 .padding()
-            }.navigationTitle(Constant.HOME_SCREEN_TITLE)
+            }
+            .navigationTitle(Constant.HOME_SCREEN_TITLE)
+            .onAppear {
+            }
         }
     }
-    
-    @ViewBuilder
-    private func destinationView(for item: String) -> some View {
-        switch item {
-        case Constant.SAVING_SCREEN_NAME:
-            SavingView()
-        case Constant.LOAN_SCREEN_NAME:
-            LoanView()
-        case Constant.MORTAGAGE_SCREEN_NAME:
-            MortgageView()
-        default:
-            Text("Unknown View") // Fallback in case of an unknown item
-        }
-    }
-    
-    
-}
 
+    private func homeNavigationLink(for index: Int) -> some View {
+        NavigationLink(destination: viewModel.destinationView(for: index)) {
+            HStack {
+                Image(systemName: viewModel.iconName(for: index))
+                    .font(.title2)
+                    .foregroundColor(.blue)
+                    .frame(width: 30, height: 30)
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(8)
+                
+                Text(viewModel.mainViews[index])
+                    .font(.title3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Image(systemName: "chevron.forward")
+                    .font(.title3)
+                    .foregroundColor(.gray)
+            }
+            .padding()
+            .frame(height: 80) 
+            .background(Color.blue.opacity(0.1))
+            .cornerRadius(10)
+        }
+    }
+}
 
 #Preview {
     HomeView()

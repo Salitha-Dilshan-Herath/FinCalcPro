@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		058A50272D74191C007958C8 /* PBXContainerItemProxy */ = {
+		05073D822D89B10C00A5458B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 058A500E2D741911007958C8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 058A50152D741912007958C8;
 			remoteInfo = "FinCalc Pro";
 		};
-		058A50312D74191C007958C8 /* PBXContainerItemProxy */ = {
+		058A50272D74191C007958C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 058A500E2D741911007958C8 /* Project object */;
 			proxyType = 1;
@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05073D7C2D89B10B00A5458B /* FinCalc ProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinCalc ProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		058A50162D741912007958C8 /* FinCalc Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinCalc Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		058A50262D74191C007958C8 /* FinCalc ProTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinCalc ProTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		058A50302D74191C007958C8 /* FinCalc ProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinCalc ProUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,14 +40,16 @@
 			path = "FinCalc ProTests";
 			sourceTree = "<group>";
 		};
-		058A50332D74191C007958C8 /* FinCalc ProUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "FinCalc ProUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05073D792D89B10B00A5458B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		058A50132D741912007958C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,13 +64,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		058A502D2D74191C007958C8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +72,6 @@
 			children = (
 				058A50182D741912007958C8 /* FinCalc Pro */,
 				058A50292D74191C007958C8 /* FinCalc ProTests */,
-				058A50332D74191C007958C8 /* FinCalc ProUITests */,
 				058A50172D741912007958C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +81,7 @@
 			children = (
 				058A50162D741912007958C8 /* FinCalc Pro.app */,
 				058A50262D74191C007958C8 /* FinCalc ProTests.xctest */,
-				058A50302D74191C007958C8 /* FinCalc ProUITests.xctest */,
+				05073D7C2D89B10B00A5458B /* FinCalc ProUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +89,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		05073D7B2D89B10B00A5458B /* FinCalc ProUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05073D842D89B10C00A5458B /* Build configuration list for PBXNativeTarget "FinCalc ProUITests" */;
+			buildPhases = (
+				05073D782D89B10B00A5458B /* Sources */,
+				05073D792D89B10B00A5458B /* Frameworks */,
+				05073D7A2D89B10B00A5458B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05073D832D89B10C00A5458B /* PBXTargetDependency */,
+			);
+			name = "FinCalc ProUITests";
+			packageProductDependencies = (
+			);
+			productName = "FinCalc ProUITests";
+			productReference = 05073D7C2D89B10B00A5458B /* FinCalc ProUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		058A50152D741912007958C8 /* FinCalc Pro */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 058A503A2D74191C007958C8 /* Build configuration list for PBXNativeTarget "FinCalc Pro" */;
@@ -140,29 +154,6 @@
 			productReference = 058A50262D74191C007958C8 /* FinCalc ProTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		058A502F2D74191C007958C8 /* FinCalc ProUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 058A50402D74191C007958C8 /* Build configuration list for PBXNativeTarget "FinCalc ProUITests" */;
-			buildPhases = (
-				058A502C2D74191C007958C8 /* Sources */,
-				058A502D2D74191C007958C8 /* Frameworks */,
-				058A502E2D74191C007958C8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				058A50322D74191C007958C8 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				058A50332D74191C007958C8 /* FinCalc ProUITests */,
-			);
-			name = "FinCalc ProUITests";
-			packageProductDependencies = (
-			);
-			productName = "FinCalc ProUITests";
-			productReference = 058A50302D74191C007958C8 /* FinCalc ProUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -173,14 +164,14 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					05073D7B2D89B10B00A5458B = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 058A50152D741912007958C8;
+					};
 					058A50152D741912007958C8 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 					058A50252D74191C007958C8 = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 058A50152D741912007958C8;
-					};
-					058A502F2D74191C007958C8 = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 058A50152D741912007958C8;
 					};
@@ -202,12 +193,19 @@
 			targets = (
 				058A50152D741912007958C8 /* FinCalc Pro */,
 				058A50252D74191C007958C8 /* FinCalc ProTests */,
-				058A502F2D74191C007958C8 /* FinCalc ProUITests */,
+				05073D7B2D89B10B00A5458B /* FinCalc ProUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		05073D7A2D89B10B00A5458B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		058A50142D741912007958C8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,16 +220,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		058A502E2D74191C007958C8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05073D782D89B10B00A5458B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
 		058A50122D741912007958C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,29 +244,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		058A502C2D74191C007958C8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05073D832D89B10C00A5458B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 058A50152D741912007958C8 /* FinCalc Pro */;
+			targetProxy = 05073D822D89B10C00A5458B /* PBXContainerItemProxy */;
+		};
 		058A50282D74191C007958C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 058A50152D741912007958C8 /* FinCalc Pro */;
 			targetProxy = 058A50272D74191C007958C8 /* PBXContainerItemProxy */;
 		};
-		058A50322D74191C007958C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 058A50152D741912007958C8 /* FinCalc Pro */;
-			targetProxy = 058A50312D74191C007958C8 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		05073D852D89B10C00A5458B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MUS9Q23L4C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.FinCalc.FinCalc-ProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "FinCalc Pro";
+			};
+			name = Debug;
+		};
+		05073D862D89B10C00A5458B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = MUS9Q23L4C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.FinCalc.FinCalc-ProUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "FinCalc Pro";
+			};
+			name = Release;
+		};
 		058A50382D74191C007958C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -496,43 +521,18 @@
 			};
 			name = Release;
 		};
-		058A50412D74191C007958C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MUS9Q23L4C;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.FinCalc.FinCalc-ProUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FinCalc Pro";
-			};
-			name = Debug;
-		};
-		058A50422D74191C007958C8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MUS9Q23L4C;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.FinCalc.FinCalc-ProUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "FinCalc Pro";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05073D842D89B10C00A5458B /* Build configuration list for PBXNativeTarget "FinCalc ProUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05073D852D89B10C00A5458B /* Debug */,
+				05073D862D89B10C00A5458B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		058A50112D741911007958C8 /* Build configuration list for PBXProject "FinCalc Pro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -556,15 +556,6 @@
 			buildConfigurations = (
 				058A503E2D74191C007958C8 /* Debug */,
 				058A503F2D74191C007958C8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		058A50402D74191C007958C8 /* Build configuration list for PBXNativeTarget "FinCalc ProUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				058A50412D74191C007958C8 /* Debug */,
-				058A50422D74191C007958C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -33,6 +33,9 @@
             reference = "container:FinCalc ProTests/UnitTests.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:FinCalc ProUITests/UITest.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -51,7 +54,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "058A502F2D74191C007958C8"
+               BlueprintIdentifier = "05073D7B2D89B10B00A5458B"
                BuildableName = "FinCalc ProUITests.xctest"
                BlueprintName = "FinCalc ProUITests"
                ReferencedContainer = "container:FinCalc Pro.xcodeproj">

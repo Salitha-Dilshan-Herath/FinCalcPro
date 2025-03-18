@@ -31,25 +31,22 @@ struct CalFutureValueView: View {
                 }
                 
                 HStack {
-                    Text("Interest per year")
+                    Text("Interest Rate")
                     Spacer()
-                    ZStack(alignment: .trailing) {
-                        // TextField for user input
-                        TextField("", text: $viewModel.interestPerYear)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
-                            .padding(.trailing, 20) // Add padding to avoid overlap with the % symbol
-                        
-                        // Placeholder text
-                        if viewModel.interestPerYear.isEmpty {
-                            Text("0")
-                                .foregroundColor(.gray)
-                                .padding(.trailing, 20) // Align placeholder with the TextField
-                        }
-                        
+                    HStack(alignment: .firstTextBaseline) {
                         Text("%")
                             .foregroundColor(.gray)
-                            .padding(.trailing, 0) // Adjust padding to align with the TextField
+                        
+                        ZStack(alignment: .trailing) {
+                            TextField("", text: $viewModel.interestPerYear)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            
+                            if viewModel.interestPerYear.isEmpty {
+                                Text("0")
+                                    .foregroundColor(.gray)
+                            }
+                        }
                     }
                 }
                 
