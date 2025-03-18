@@ -138,25 +138,9 @@ struct CalPMTView: View {
             }
         }
         .sheet(isPresented: $isHelpSheetPresented) {
-            HelpView(helpData: helpData)
+            HelpView(helpData: Constant.PMT_HELP_DATA)
         }
     }
-    
-    let helpData = HelpData(
-        title: "Help",
-        description: "The PMT (Periodic Payment) Calculator helps you determine the periodic payment required to achieve a future value or pay off a loan.",
-        inputFields: [
-            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the payments will be made."),
-            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be applied to the loan or investment."),
-            InputField(icon: "dollarsign.circle", title: "Present Value", description: "Enter the initial amount of money (present value) of the loan or investment."),
-            InputField(icon: "dollarsign.circle.fill", title: "Future Value", description: "Enter the future amount of money you want to achieve. For loans, this is typically 0.")
-        ],
-        notes: [
-            "Ensure all inputs are positive numbers.",
-            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
-            "The calculator assumes that payments are made at the end of each period."
-        ]
-    )
 }
 
 #Preview {

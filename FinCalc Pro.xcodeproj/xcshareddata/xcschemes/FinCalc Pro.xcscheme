@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:FinCalc ProTests/Sample.xctestplan"
+            reference = "container:FinCalc ProTests/UnitTests.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

@@ -137,26 +137,9 @@ struct CalPresentValueView: View {
             }
         }
         .sheet(isPresented: $isHelpSheetPresented) {
-            HelpView(helpData: presentValueHelpData)
+            HelpView(helpData: Constant.PRESENT_VALUE_HELP_DATA)
         }
     }
-    
-    let presentValueHelpData = HelpData(
-        title: "Present Value Calculator Help",
-        description: "The Present Value Calculator helps you determine the current value of a future amount of money or cash flow, based on the following inputs:",
-        inputFields: [
-            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the future value will be discounted."),
-            InputField(icon: "percent", title: "Interest Per Year", description: "Enter the annual interest rate (in percentage) that will be used to discount the future value."),
-            InputField(icon: "dollarsign.circle", title: "Future Value", description: "Enter the future amount of money or cash flow you want to discount to its present value."),
-            InputField(icon: "arrow.clockwise.circle", title: "Periodic Payment (Optional)", description: "Enter the amount of money you will receive or pay periodically (e.g., monthly or yearly). If there are no periodic payments, you can leave this field blank or enter 0.")
-        ],
-        notes: [
-            "Ensure all inputs are positive numbers.",
-            "The interest rate should be entered as a percentage (e.g., 5 for 5%).",
-            "The calculator assumes that payments are made at the end of each period."
-        ]
-    )
-
 }
 
 #Preview {

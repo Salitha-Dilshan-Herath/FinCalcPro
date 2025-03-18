@@ -19,6 +19,7 @@ struct MainTabView: View {
                     Label(Constant.ABOUT_SCRREN_TITLE, systemImage: "questionmark.circle.fill")
                 }
         }.backgroundStyle(Color.white)
+            .tabViewStyle(.automatic)
     }
 }
 

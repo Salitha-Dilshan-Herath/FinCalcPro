@@ -137,24 +137,9 @@ struct CalInterestRateView: View {
             }
         }
         .sheet(isPresented: $isHelpSheetPresented) {
-            HelpView(helpData: interestRateHelpData)
+            HelpView(helpData: Constant.INTEREST_RATE_HELP_DATA)
         }
     }
-    
-    let interestRateHelpData = HelpData(
-        title: "Help",
-        description: "The Interest Rate Calculator helps you determine the annual interest rate required to achieve a future value, based on the following inputs:",
-        inputFields: [
-            InputField(icon: "calendar", title: "Number of Periods", description: "Enter the total number of periods (e.g., months, years) over which the investment will grow."),
-            InputField(icon: "dollarsign.circle", title: "Present Value", description: "Enter the initial amount of money (present value) you are investing."),
-            InputField(icon: "dollarsign.circle.fill", title: "Future Value", description: "Enter the future amount of money you want to achieve."),
-            InputField(icon: "arrow.clockwise.circle", title: "Periodic Payment (Optional)", description: "Enter the amount of money you will add periodically (e.g., monthly or yearly) to the investment. If there are no periodic payments, you can leave this field blank or enter 0.")
-        ],
-        notes: [
-            "Ensure all inputs are positive numbers.",
-            "The calculator assumes that payments are made at the end of each period."
-        ]
-    )
 }
 
 #Preview {
