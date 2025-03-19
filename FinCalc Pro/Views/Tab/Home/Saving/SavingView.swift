@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SavingView: View {
     @StateObject private var viewModel = SavingViewModel()
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
@@ -27,16 +27,17 @@ struct SavingView: View {
             viewModel.isVisible = true
         }
     }
-
+    
     private func savingNavigationLink(for index: Int) -> some View {
         NavigationLink(destination: viewModel.destinationView(for: index)) {
-            HStack {
+            Label {
                 Text(viewModel.savingViews[index])
                     .font(.title3)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Image(systemName: "chevron.forward")
+            } icon: {
+                Image(systemName: viewModel.iconName(for: index))
                     .font(.title3)
+                    .foregroundColor(.blue)
             }
             .padding()
             .background(Color.blue.opacity(0.1))

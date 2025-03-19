@@ -23,4 +23,15 @@ class SavingViewModel: ObservableObject {
         default: Text("Unknown View") // Fallback
         }
     }
+    
+    func iconName(for index: Int) -> String {
+        let icons = [
+            "chart.bar.doc.horizontal", // Future Value
+            "calendar", // Periodic Value
+            "percent", // Interest Rate
+            "clock.arrow.circlepath", // Compounding Periods
+            "dollarsign.circle" // Present Value
+        ]
+        return icons[index]
+    }
 }
