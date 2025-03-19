@@ -13,15 +13,12 @@ class InterestRateViewModel: ObservableObject {
     @Published var presentValue: String = ""
     @Published var periodicPayment: String = ""
     @Published var futureValue: String = ""
-    
-    // Output (result)
     @Published var calculationResult: CalculationResult = .empty
     @Published var interestRate: Double? = nil
 
-    // Function to calculate interest rate
+    //MARK: Function to perform the calculation
     func calculate() {
 
-        // Convert inputs to Double
         guard let n = Double(numberOfPeriods),
               let pv = Double(presentValue),
               let pmt = Double(periodicPayment),
@@ -30,7 +27,6 @@ class InterestRateViewModel: ObservableObject {
             return
         }
         
-        // Validate inputs
         guard n > 0 else {
             calculationResult = .invalidInput
             return

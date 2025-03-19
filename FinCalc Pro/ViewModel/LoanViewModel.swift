@@ -18,17 +18,14 @@ class LoanViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var calculatedValue: String = ""
     
-    // MARK: - Methods
-    
+    //MARK: Function to perform the calculation
     func calculate() {
-        // Reset error message and calculated value
         errorMessage = ""
         calculatedValue = ""
         
         // Count the number of non-empty inputs
         let nonEmptyInputs = [loanAmount, loanTerm, monthlyPayment, interestRate].filter { !$0.isEmpty }
         
-        // Validate the number of inputs
         if nonEmptyInputs.count < 3 {
             errorMessage = "Please enter at least 3 variables to calculate the missing one."
             return
@@ -37,13 +34,11 @@ class LoanViewModel: ObservableObject {
             return
         }
         
-        // Convert non-empty inputs to Double
         let loanAmountValue = loanAmount.isEmpty ? nil : Double(loanAmount)
         let loanTermValue = loanTerm.isEmpty ? nil : Double(loanTerm)
         let monthlyPaymentValue = monthlyPayment.isEmpty ? nil : Double(monthlyPayment)
         let interestRateValue = interestRate.isEmpty ? nil : Double(interestRate)
         
-        // Check if all non-empty inputs are valid numbers
         if (loanAmountValue == nil && !loanAmount.isEmpty) ||
             (loanTermValue == nil && !loanTerm.isEmpty) ||
             (monthlyPaymentValue == nil && !monthlyPayment.isEmpty) ||
@@ -52,7 +47,6 @@ class LoanViewModel: ObservableObject {
             return
         }
         
-        // Create LoanModel instance
         let loanModel = LoanModel(
             loanAmount: loanAmountValue,
             loanTerm: loanTermValue,

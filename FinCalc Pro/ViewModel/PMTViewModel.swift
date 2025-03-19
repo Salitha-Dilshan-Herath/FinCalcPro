@@ -9,19 +9,16 @@ import Foundation
 
 
 class PMTViewModel: ObservableObject {
-    // Inputs from the user
+
     @Published var numberOfPeriods: String = ""
     @Published var interestPerYear: String = ""
     @Published var presentValue: String = ""
     @Published var futureValue: String = ""
-    
-    // Output (result)
     @Published var calculationResult: CalculationResult = .empty
     
-    // Function to calculate PMT
+    //MARK: Function to perform the calculation
     func calculate() {
         
-        // Convert inputs to Double
         guard let n = Double(numberOfPeriods),
               let iy = Double(interestPerYear),
               let pv = Double(presentValue),
@@ -30,7 +27,6 @@ class PMTViewModel: ObservableObject {
             return
         }
         
-        // Validate inputs
         guard n > 0, iy >= 0 else {
             calculationResult = .invalidInput
             return
@@ -38,7 +34,6 @@ class PMTViewModel: ObservableObject {
 
         let model = PMTModel(numberOfPeriods: n, interestPerYear: iy, presentValue: pv, futureValue: fv)
 
-        // Set the result
         if let result = model.calPmt(){
             calculationResult = .valid(result)
         } else {

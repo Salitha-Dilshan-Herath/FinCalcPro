@@ -9,25 +9,19 @@ import Foundation
 
 class MortgageViewModel: ObservableObject {
     
-    // MARK: - User inputs
     @Published var housePrice: String = ""
     @Published var downPayment: String = ""
     @Published var monthlyPayment: String = ""
-    @Published var loanTerm: String = "" // Number of year
+    @Published var loanTerm: String = ""
     @Published var interestRate: String = ""
-    
     @Published var errorMessage: String = ""
     
-    // MARK: - Methods
-    
+    //MARK: Function to perform the calculation
     func calculate() {
-        // Reset error message and calculated value
         errorMessage = ""
         
-        // Count the number of non-empty inputs
         let nonEmptyInputs = [housePrice, downPayment, monthlyPayment, loanTerm, interestRate].filter { !$0.isEmpty }
         
-        // Validate the number of inputs
         if nonEmptyInputs.count < 4 {
             errorMessage = "Please enter at least 4 variables to calculate the missing one."
             return
@@ -36,14 +30,12 @@ class MortgageViewModel: ObservableObject {
             return
         }
         
-        // Convert non-empty inputs to Double
         let housePriceValue = housePrice.isEmpty ? nil : Double(housePrice)
         let downPaymentValue = downPayment.isEmpty ? nil : Double(downPayment)
         let monthlyPaymentValue = monthlyPayment.isEmpty ? nil : Double(monthlyPayment)
         let loanTermValue = loanTerm.isEmpty ? nil : Double(loanTerm)
         let interestRateValue = interestRate.isEmpty ? nil : Double(interestRate)
         
-        // Check if all non-empty inputs are valid numbers
         if (housePriceValue == nil && !housePrice.isEmpty) ||
             (downPaymentValue == nil && !downPayment.isEmpty) ||
             (monthlyPaymentValue == nil && !monthlyPayment.isEmpty) ||
@@ -53,7 +45,6 @@ class MortgageViewModel: ObservableObject {
             return
         }
         
-        // Create MortgageModel instance
         let mortgageModel = MortgageModel(
             housePrice: housePriceValue,
             downPayment: downPaymentValue,
@@ -104,10 +95,5 @@ class MortgageViewModel: ObservableObject {
         loanTerm = ""
         interestRate = ""
         errorMessage = ""
-    }
-    
-    // Show help information
-    func showHelp() {
-        errorMessage = "Enter at least 4 variables to calculate the missing one. Leave one field empty."
     }
 }

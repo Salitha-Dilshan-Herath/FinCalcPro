@@ -11,7 +11,6 @@ class SavingViewModel: ObservableObject {
     @Published var isVisible = false
     let savingViews = Constant.SAVING_VIEWS
     
-    // Function to return the correct destination view
     @ViewBuilder
     func destinationView(for index: Int) -> some View {
         switch index {
@@ -20,7 +19,7 @@ class SavingViewModel: ObservableObject {
         case 2: CalInterestRateView()
         case 3: CalCompoundingPeriodsView()
         case 4: CalPresentValueView()
-        default: Text("Unknown View") // Fallback
+        default: Text("Unknown View")
         }
     }
     
