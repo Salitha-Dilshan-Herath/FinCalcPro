@@ -25,7 +25,6 @@ struct AboutView: View {
                     }
                     .padding(.top, 30)
                     
-                    // App Description
                     VStack(alignment: .leading, spacing: 10) {
                         Text("About FinCalc Pro")
                             .font(.title2)
@@ -43,7 +42,6 @@ struct AboutView: View {
                     Divider()
                         .padding(.vertical, 10)
                     
-                    // Developer Information
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Developed By")
                             .font(.title2)
@@ -71,7 +69,7 @@ struct AboutView: View {
                 }
                 .padding(.bottom, 30)
             }
-            .navigationTitle("About Us")
+            .navigationTitle(Constant.ABOUT_SCRREN_TITLE)
             .navigationBarTitleDisplayMode(.inline)
         }
     }

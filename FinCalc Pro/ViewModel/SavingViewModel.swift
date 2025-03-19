@@ -9,7 +9,7 @@ import SwiftUI
 
 class SavingViewModel: ObservableObject {
     @Published var isVisible = false
-    let savingViews = Constant.SAVING_VIEWS // Fetch from Constants
+    let savingViews = Constant.SAVING_VIEWS
     
     // Function to return the correct destination view
     @ViewBuilder

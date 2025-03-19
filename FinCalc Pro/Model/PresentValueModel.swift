@@ -14,7 +14,7 @@ struct PresentValueModel {
     var futureValue: Double
     var periodicPayment: Double
     
-    //MARK: Calculate Present Value
+    //MARK: Calculate
     func calculatePresentValue() -> Double {
         let r = interestPerYear / 100.0
         

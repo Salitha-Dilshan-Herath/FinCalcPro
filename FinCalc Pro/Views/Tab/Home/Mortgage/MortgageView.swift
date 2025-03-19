@@ -14,7 +14,7 @@ struct MortgageView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Financial Inputs")) {
+            Section(header: Text(Constant.SECTION_TITLE)) {
                 
                 HStack {
                     Text("House Price")
@@ -129,13 +129,13 @@ struct MortgageView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .navigationTitle("Mortgage Calculator")
+        .navigationTitle(Constant.MORTAGAGE_SCREEN_TITLE)
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("Invalid Input"),
+                title: Text(Constant.ERORR_ALERT_TITLE_INVALID_DATA),
                 message: Text(viewModel.errorMessage),
-                dismissButton: .default(Text("OK")))
+                dismissButton: .default(Text(Constant.ERROR_ALERT_BUTTON_TITLE_OK)))
         }.toolbar {
             // Reset Button
             ToolbarItem(placement: .navigationBarTrailing) {

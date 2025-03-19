@@ -14,7 +14,7 @@ struct CalInterestRateView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Financial Inputs")) {
+            Section(header: Text(Constant.SECTION_TITLE)) {
                 HStack {
                     Text("Number of periods")
                     Spacer()
@@ -116,13 +116,13 @@ struct CalInterestRateView: View {
                 }
             }
         }
-        .navigationTitle("Interest Rate Calculator")
+        .navigationTitle(Constant.INTEREST_RATE_SCREEN_TITLE)
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
-                title: Text("Invalid Input"),
-                message: Text("Please enter valid numbers for all fields."),
-                dismissButton: .default(Text("OK")))
+                title: Text(Constant.ERORR_ALERT_TITLE_INVALID_DATA),
+                message: Text(Constant.ERROR_ALERT_MESSAGE_INVALID_DATA),
+                dismissButton: .default(Text(Constant.ERROR_ALERT_BUTTON_TITLE_OK)))
         }.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

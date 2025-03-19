@@ -21,7 +21,7 @@ struct NoteItem: View {
             Text(text)
                 .font(.body)
                 .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true) // Allow text to wrap
+                .fixedSize(horizontal: false, vertical: true) 
         }
     }
 }

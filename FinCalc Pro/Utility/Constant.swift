@@ -7,8 +7,8 @@
 
 struct Constant {
     
-    public static let HOME_SCREEN_TITLE = "Home"
-    public static let ABOUT_SCRREN_TITLE = "About Us"
+    public static let HOME_SCREEN_TITLE  = "Home"
+    public static let ABOUT_SCRREN_TITLE = "About"
     public static let MAIN_VIEWS = ["Saving", "Loan", "Mortgage"]
     public static let SAVING_SCREEN_NAME = "Saving"
     public static let LOAN_SCREEN_NAME = "Loan"
@@ -16,6 +16,18 @@ struct Constant {
     public static let SAVING_VIEWS = ["Calculate Future Value", "Calculate Periodic Value", "Calculate Interest Rate", "Calculate Compounding Periods", "Calculate Present Value"]
     
     public static let LOAN_SCREEN_TITLE = "Loan Calculator"
+    public static let MORTAGAGE_SCREEN_TITLE = "Mortalage Calculator"
+    public static let COMPOUDING_SCREEN_TITLE = "Compounding Periods Calculator"
+    public static let FUTURE_VALUE_SCREEN_TITLE = "Future Value Calculator"
+    public static let INTEREST_RATE_SCREEN_TITLE = "Interest Rate Calculator"
+    public static let PMT_SCREN_TITLE = "Periodic Payment Calculator"
+    public static let PRESENT_VALUE_SCREEN_TITLE = "Present Value Calculator"
+    
+    public static let ERORR_ALERT_TITLE_INVALID_DATA = "Invalid Input"
+    public static let ERROR_ALERT_MESSAGE_INVALID_DATA = "Please enter valid numbers for all fields."
+    public static let ERROR_ALERT_BUTTON_TITLE_OK = "OK"
+    
+    public static let SECTION_TITLE = "Financial Inputs"
     
     public static let CURRENCY = "Rs"
     
@@ -129,5 +141,5 @@ struct Constant {
             "The calculator assumes that payments are made at the end of each period."
         ]
     )
-
+    
 }

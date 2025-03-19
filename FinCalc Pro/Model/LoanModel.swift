@@ -10,12 +10,12 @@ import Foundation
 struct LoanModel {
 
     var loanAmount: Double?
-    var loanTerm: Double? // Number of months
+    var loanTerm: Double?
     var monthlyPayment: Double?
-    var interestRate: Double? // Annual interest rate
+    var interestRate: Double?
     
     // MARK: - Calculations
-    
+
     func calculateLoanAmount() -> Double? {
         guard let loanTerm = loanTerm,
               let monthlyPayment = monthlyPayment,
@@ -29,7 +29,7 @@ struct LoanModel {
         }
         
         let r = interestRate / 1200 // Monthly interest rate
-        let n = loanTerm // Total number of payments (in months)
+        let n = loanTerm
         let numerator = monthlyPayment * (1 - pow(1 + r, -n))
         let denominator = r
         return numerator / denominator
@@ -78,14 +78,13 @@ struct LoanModel {
         }
         
         let n = Double(loanTerm)
-        var r = 0.005 // Initial guess for monthly interest rate (0.5%)
+        var r = 0.005
         
-        // Function to compute the difference between actual and expected monthly payment
         func loanEquation(r: Double) -> Double {
             return (loanAmount * r) / (1 - pow(1 + r, -n)) - monthlyPayment
         }
         
-        for _ in 0..<100 { // Limit iterations to avoid infinite loop
+        for _ in 0..<100 {
             let f = loanEquation(r: r)
             let f_prime = (loanAmount * (pow(1 + r, -n) * (n * r - 1) + 1)) / pow(1 - pow(1 + r, -n), 2)
             
@@ -94,6 +93,6 @@ struct LoanModel {
             r = newR
         }
         
-        return r * 12 * 100 // Convert to annual percentage rate (APR)
+        return r * 12 * 100 
     }
 }

@@ -49,7 +49,7 @@ class MortgageViewModel: ObservableObject {
             (monthlyPaymentValue == nil && !monthlyPayment.isEmpty) ||
             (loanTermValue == nil && !loanTerm.isEmpty) ||
             (interestRateValue == nil && !interestRate.isEmpty) {
-            errorMessage = "Please enter valid numbers for all fields."
+            errorMessage = Constant.ERROR_ALERT_MESSAGE_INVALID_DATA
             return
         }
         
