@@ -54,7 +54,7 @@ struct CalPMTView: View {
                     Text("Present Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -74,8 +74,7 @@ struct CalPMTView: View {
                     Text("Future Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
-                        // $ symbol at the front
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         // TextField for user input

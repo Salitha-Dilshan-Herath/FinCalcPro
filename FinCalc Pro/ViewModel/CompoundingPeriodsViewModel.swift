@@ -12,11 +12,9 @@ class CompoundingPeriodsViewModel: ObservableObject{
     @Published var presentValue: String = ""
     @Published var periodicPayment: String = ""
     @Published var futureValue: String = ""
-
-    // Output (result)
     @Published var calculationResult: CalculationResult = .empty
     
-    // Function to perform the calculation
+    //MARK: Function to perform the calculation
     func calculate() {
         
         // Convert inputs to Double
@@ -29,7 +27,7 @@ class CompoundingPeriodsViewModel: ObservableObject{
             return
         }
 
-        let model = CompoundingPeriodsModal(interestPerYear: iy, presentValue: pv, periodicPayment: pmt, futureValue: fv)
+        let model = CompoundingPeriodsModal(interestPerYear: iy, presentValue: pv, futureValue: fv, periodicPayment: pmt)
         
         if let value = model.calculateNumberOfPeriods() {
             calculationResult = .valid(value)

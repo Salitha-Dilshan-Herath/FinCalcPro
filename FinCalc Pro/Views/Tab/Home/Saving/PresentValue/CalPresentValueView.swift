@@ -53,7 +53,7 @@ struct CalPresentValueView: View {
                     Text("Future Value")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -73,8 +73,7 @@ struct CalPresentValueView: View {
                     Text("Periodic Payment")
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
-                        // $ symbol at the front
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         // TextField for user input

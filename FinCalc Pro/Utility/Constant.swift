@@ -15,6 +15,9 @@ struct Constant {
     public static let MORTAGAGE_SCREEN_NAME = "Mortgage"
     public static let SAVING_VIEWS = ["Calculate Future Value", "Calculate Periodic Value", "Calculate Interest Rate", "Calculate Compounding Periods", "Calculate Present Value"]
     
+    public static let LOAN_SCREEN_TITLE = "Loan Calculator"
+    
+    public static let CURRENCY = "Rs"
     
     //MARK: Help view data
     public static let LOAN_HELP_DATA: HelpData = HelpData(

@@ -20,7 +20,7 @@ struct MortgageView: View {
                     Text("House Price")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -40,7 +40,7 @@ struct MortgageView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
 
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -61,7 +61,7 @@ struct MortgageView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
 
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {

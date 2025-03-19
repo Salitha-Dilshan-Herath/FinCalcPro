@@ -20,7 +20,7 @@ struct LoanView: View {
                     Text("Loan Amount")
                     Spacer()
                     HStack(alignment: .firstTextBaseline){
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -61,7 +61,7 @@ struct LoanView: View {
                     Spacer()
                     HStack(alignment: .firstTextBaseline) {
 
-                        Text("Rs")
+                        Text(Constant.CURRENCY)
                             .foregroundColor(.gray)
                         
                         ZStack(alignment: .trailing) {
@@ -108,7 +108,7 @@ struct LoanView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
         }
-        .navigationTitle("Loan Calculator")
+        .navigationTitle(Constant.LOAN_SCREEN_TITLE)
         .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showAlert) {
             Alert(
