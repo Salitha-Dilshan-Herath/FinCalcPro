@@ -7,15 +7,18 @@
 import Foundation
 
 struct PMTModel {
+    
     var numberOfPeriods: Double
     var interestPerYear: Double
     var presentValue: Double
     var futureValue: Double
     
+    //MARK: Calculate PMT Value
     func calPmt() -> Double? {
         let r = interestPerYear / 100.0
         
         if r == 0 {
+            // Handle case where the interest rate is zero
             return -(futureValue + presentValue) / numberOfPeriods
         }
         

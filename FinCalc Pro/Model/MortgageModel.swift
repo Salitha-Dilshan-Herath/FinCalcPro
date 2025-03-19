@@ -8,12 +8,12 @@
 import Foundation
 
 struct MortgageModel {
-    // MARK: - Properties
+
     var housePrice: Double?
     var downPayment: Double?
     var monthlyPayment: Double?
-    var loanTerm: Double? // Number of years
-    var interestRate: Double? // Annual interest rate
+    var loanTerm: Double?
+    var interestRate: Double?
     
     // MARK: - Calculations
     
@@ -25,8 +25,8 @@ struct MortgageModel {
               let interestRate = interestRate else {
             return nil
         }
-        let r = interestRate / 1200 // Monthly interest rate
-        let n = loanTerm * 12 // Total number of payments (in months)
+        let r = interestRate / 1200
+        let n = loanTerm * 12
         let numerator = monthlyPayment * (1 - pow(1 + r, -n))
         let denominator = r
         return (numerator / denominator) + downPayment
@@ -40,8 +40,8 @@ struct MortgageModel {
               let interestRate = interestRate else {
             return nil
         }
-        let r = interestRate / 1200 // Monthly interest rate
-        let n = loanTerm * 12 // Total number of payments (in months)
+        let r = interestRate / 1200
+        let n = loanTerm * 12
         let numerator = monthlyPayment * (1 - pow(1 + r, -n))
         let denominator = r
         return housePrice - (numerator / denominator)
@@ -56,13 +56,13 @@ struct MortgageModel {
             return nil
         }
         let loanAmount = housePrice - downPayment
-        let n = loanTerm * 12 // Total number of payments (in months)
+        let n = loanTerm * 12
         
         if interestRate == 0 {
-            return loanAmount / Double(n)  // No interest, simple division
+            return loanAmount / Double(n)
         }
         
-        let r = interestRate / 1200 // Monthly interest rate
+        let r = interestRate / 1200
         return (loanAmount * r) / (1 - pow(1 + r, -Double(n)))
     }
     
@@ -77,10 +77,10 @@ struct MortgageModel {
         let loanAmount = housePrice - downPayment
         
         if interestRate == 0 {
-            return (loanAmount / monthlyPayment) / 12 // Calculate term for zero-interest loans
+            return (loanAmount / monthlyPayment) / 12
         }
         
-        let r = interestRate / 1200 // Monthly interest rate
+        let r = interestRate / 1200
         let n = log(monthlyPayment / (monthlyPayment - loanAmount * r)) / log(1 + r)
         
         return n / 12
@@ -96,10 +96,10 @@ struct MortgageModel {
         }
         
         let loanAmount = housePrice - downPayment
-        let n = loanTerm * 12 // Total number of payments (months)
+        let n = loanTerm * 12
         
         var lowerBound = 0.0
-        var upperBound = 100.0 // Assuming no interest rate will exceed 100%
+        var upperBound = 100.0
         var guessRate = (lowerBound + upperBound) / 2.0
         
         while upperBound - lowerBound > 0.0001 {

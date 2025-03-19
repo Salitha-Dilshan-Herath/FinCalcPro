@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoanModel {
-    // MARK: - Properties
+
     var loanAmount: Double?
     var loanTerm: Double? // Number of months
     var monthlyPayment: Double?
@@ -77,7 +77,7 @@ struct LoanModel {
             return nil
         }
         
-        let n = Double(loanTerm) // Loan term in months
+        let n = Double(loanTerm)
         var r = 0.005 // Initial guess for monthly interest rate (0.5%)
         
         // Function to compute the difference between actual and expected monthly payment
@@ -90,7 +90,7 @@ struct LoanModel {
             let f_prime = (loanAmount * (pow(1 + r, -n) * (n * r - 1) + 1)) / pow(1 - pow(1 + r, -n), 2)
             
             let newR = r - f / f_prime
-            if abs(newR - r) < 1e-6 { break } // Convergence check
+            if abs(newR - r) < 1e-6 { break }
             r = newR
         }
         

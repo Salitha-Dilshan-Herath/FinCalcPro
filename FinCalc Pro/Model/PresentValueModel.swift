@@ -14,6 +14,7 @@ struct PresentValueModel {
     var futureValue: Double
     var periodicPayment: Double
     
+    //MARK: Calculate Present Value
     func calculatePresentValue() -> Double {
         let r = interestPerYear / 100.0
         
@@ -21,7 +22,7 @@ struct PresentValueModel {
             // Handle case where the interest rate is zero
             let pvOfAnnuity = periodicPayment * numberOfPeriods
             let pvOfFutureValue = futureValue
-            return -(pvOfAnnuity + pvOfFutureValue)  // Negative sign for outgoing payments
+            return -(pvOfAnnuity + pvOfFutureValue)
         }
         
         if periodicPayment > 0 {
@@ -34,10 +35,7 @@ struct PresentValueModel {
         } else {
             // Compute present value of annuity (periodic payments)
             let pvOfAnnuity = periodicPayment * ((1 - pow(1 + r, -numberOfPeriods)) / r)
-            
-            // Compute present value of future value
             let pvOfFutureValue = futureValue / pow(1 + r, numberOfPeriods)
-            
             return -(pvOfAnnuity + pvOfFutureValue)
         }
     }
